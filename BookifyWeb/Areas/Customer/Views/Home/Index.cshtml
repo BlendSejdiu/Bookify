@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Book>
+
+<div class="row pb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <form asp-action="Index" asp-controller="Home" method="get">
+                <div class="input-group align-items-center">
+                    <!-- Add align-items-center class -->
+                    <input type="text" class="form-control m-1 rounded" placeholder="Search for books..." name="searchString" value="@ViewData["CurrentFilter"]" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <span class="bi bi-search"></span> <!-- Bootstrap search icon -->
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    @foreach (var book in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow  border-top border-5 rounded">
+                        <img src="@book.ImageUrl" class="card-img-top rounded" />
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h6 text-dark opacity-75 text-uppercase text-center"><b>@book.Title</b></p>
+                                <p class="card-title text-dark text-center">by: <b>@book.Author.FullName</b></p>
+                                <p class="card-title text-warning text-center">Category: <b>@book.Category.Name</b></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center mb-0">
+                                    <b>
+                                        Price:
+                                        <span>
+                                            @book.Price.ToString("c")
+                                        </span>
+                                    </b>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-bookId="@book.Id" class="btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

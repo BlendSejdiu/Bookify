@@ -1,0 +1,145 @@
+﻿@model BookVM
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3 ">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Book.Id!=0?"Update":"Create") Book</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Book.Id" hidden />
+            <input asp-for="Book.ImageUrl" hidden />
+            <div class="row">
+                @if (Model.Book.Id != 0)
+                {
+                    <div class="col-8">
+                        <div class="border p-3">
+                            <div class="form-floating py-2 col-12">
+                                <input asp-for="Book.Title" class="form-control border-0 shadow" />
+                                <label asp-for="Book.Title" ></label>
+                                <span asp-validation-for="Book.Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-floating py-2 col-12">
+                                <textarea asp-for="Book.Description" class="form-control border-0 shadow"></textarea>
+                                <label asp-for="Book.Description" ></label>
+                                <span asp-validation-for="Book.Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-floating py-2 col-12">
+                                <input asp-for="Book.Price" class="form-control border-0 shadow" />
+                                <label asp-for="Book.Price" ></label>
+                                <span asp-validation-for="Book.Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-floating py-2 col-12">
+                                <select asp-for="Book.CategoryId" asp-items="@Model.CategoryList" class="form-select border-0 shadow">
+                                    <option disabled selected>--Select Category--</option>
+                                </select>
+                                <label asp-for="Book.CategoryId" ></label>
+                                <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+                            </div>
+                            <div class="form-floating py-2 col-12">
+                                <select asp-for="Book.AuthorId" asp-items="@Model.AuthorList" class="form-select border-0 shadow">
+                                    <option disabled selected>--Select Author--</option>
+                                </select>
+                                <label asp-for="Book.AuthorId" ></label>
+                                <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
+                            </div>
+                            <div class="form-floating py-2 col-12">
+                                <input type="file" name="file" class="form-control border-0 shadow" />
+                                <label asp-for="Book.ImageUrl" ></label>
+                            </div>
+                            <div class="row pt-2">
+                                @if (Model.Book.Id != 0)
+                                {
+                                    <div class="col-6 col-md-3">
+                                        <button type="submit" class="btn btn-primary form-control">Update</button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-6 col-md-3">
+                                        <button type="submit" class="btn btn-primary form-control">Create</button>
+                                    </div>
+                                }
+                                <div class="col-6 col-md-3">
+                                    <a asp-controller="Book" asp-action="Index" class="btn btn-outline-primary border form-control">Back To List</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <img src="@Model.Book.ImageUrl" width="100%"
+                             style="border-radius:5px; border:1px solid #bbb9b9" />
+                    </div>
+                }
+                else
+                {
+                    <div class="border p-3">
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Book.Title" class="form-control border-0 shadow" />
+                            <label asp-for="Book.Title" ></label>
+                            <span asp-validation-for="Book.Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Book.Description" class="form-control border-0 shadow"></textarea>
+                            <label asp-for="Book.Description" ></label>
+                            <span asp-validation-for="Book.Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Book.Price" class="form-control border-0 shadow" />
+                            <label asp-for="Book.Price" ></label>
+                            <span asp-validation-for="Book.Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="Book.CategoryId" asp-items="@Model.CategoryList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+                            <label asp-for="Book.CategoryId" ></label>
+                            <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="Book.AuthorId" asp-items="@Model.AuthorList" class="form-select border-0 shadow">
+                                <option disabled selected>--Select Author--</option>
+                            </select>
+                            <label asp-for="Book.AuthorId" ></label>
+                            <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="file" class="form-control border-0 shadow" />
+                            <label asp-for="Book.ImageUrl" ></label>
+                        </div>
+
+                        <div class="row pt-2">
+                            @if (Model.Book.Id != 0)
+                            {
+                                <div class="col-6 col-md-3">
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-6 col-md-3">
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                </div>
+                            }
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Book" asp-action="Index" class="btn btn-outline-primary border form-control">Back To List</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
